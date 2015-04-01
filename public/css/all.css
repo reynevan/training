@@ -6233,3 +6233,10 @@ label,
 }
 
 /*# sourceMappingURL=app.css.map */
+.exercises .new-exercise input {
+  border: none;
+  outline: none;
+}
+
+/*# sourceMappingURL=exercises.css.map */
+/*# sourceMappingURL=all.css.map */

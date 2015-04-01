@@ -1,0 +1,1 @@
+{"version":3,"sources":["exercises.less","exercises.css"],"names":[],"mappings":"AAAA;EAGM,cAAA;EACA,eAAA;ECDL","file":"exercises.css","sourcesContent":[".exercises {\r\n  .new-exercise {\r\n    input {\r\n      border: none;\r\n      outline: none;\r\n    }\r\n  }\r\n}\r\n",null],"sourceRoot":"/source/"}

@@ -26,11 +26,17 @@ class ExercisesController extends Controller {
 		$exercises = Auth::user()->exercises;
 		foreach ($exercises as $exercise){
 			$maxRepeats = 0;
+			$sumRepeats = 0;
 			foreach (Auth::user()->trainings as $training){
 				foreach ($training->series as $serie){
-					$exercise->dupa = $serie->exercises->find($exercise->id)->name;
+					$repeats = $serie->exercise($exercise->id)->first()->repeats;
+					$sumRepeats += $repeats;
+					if ($maxRepeats == 0 || $repeats > $maxRepeats)
+						$maxRepeats = $repeats;
 				}
 			}
+			$exercise->maxRepeats = $maxRepeats;
+			$exercise->sumRepeats = $sumRepeats;
 		}
 		return view('exercises.index', compact('exercises'));
 	}

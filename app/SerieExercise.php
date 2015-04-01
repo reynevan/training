@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class SerieExercise extends Model {
 
 	public function exercise(){
-    return App\Exercise::find($this->exercise_id);
+    return Exercise::find($this->exercise_id);
   }
 
   public function serie(){

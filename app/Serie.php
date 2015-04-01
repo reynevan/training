@@ -12,4 +12,7 @@ class Serie extends Model {
     return $this->hasMany('App\SerieExercise');
   }
 
+  public function exercise($id){
+    return $this->exercises()->where('exercise_id', $id);
+  }
 }

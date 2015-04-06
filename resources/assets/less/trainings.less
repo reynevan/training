@@ -1,0 +1,65 @@
+.trainings {
+  input[type="number"]{
+    padding-left:2px;
+  }
+
+  .training-finished{
+    margin: 30px 0;
+    padding: 15px;
+    border: 1px solid rgba(0,0,0,0);
+
+    &:hover{
+      background-color: #eee;
+      border: 1px solid #e8e8e8;
+    }
+  }
+
+  .btn-new-training{
+    width:100%;
+  }
+
+  .btn-serie-remove{
+    padding: 0 4px;
+  }
+  .btn-serie-remove:hover{
+    text-decoration: none;
+  }
+
+  .new-training tbody tr td:first-of-type {
+    min-width: 100px;
+
+    button{
+      display: none;
+    }
+  }
+  .new-training tbody tr:hover{
+    td:first-of-type button{
+      display: inherit;
+    }
+  }
+
+  .new-training thead th:hover{
+    a {
+      display: inline-block;
+    }
+  }
+
+  .new-training thead th a{
+    display: none;
+  }
+
+  .training-finished:hover{
+    .btn-delete-training{
+      display: inline-block;
+    }
+  }
+  .btn-delete-training{
+    float: right;
+    display: none; 
+
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
+}

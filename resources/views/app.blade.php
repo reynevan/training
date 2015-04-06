@@ -7,7 +7,7 @@
 	<title>Laravel</title>
 
 	<link href="{{ asset('/css/all.css') }}" rel="stylesheet">
-
+	@yield('css')
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
@@ -28,12 +28,12 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Laravel</a>
+				<a class="navbar-brand" href="{{ url('/trainings') }}">Treningi</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="{{ url('/') }}">Home</a></li>
+					<li><a href="{{ url('/exercises') }}">Ćwiczenia</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -44,6 +44,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
+								<li><a href="{{ url('/exercises') }}">Moje ćwiczenia</a></li>
 								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 							</ul>
 						</li>
@@ -53,6 +54,11 @@
 		</div>
 	</nav>
 	<div class = 'container-fluid'>
+		<div class = "col-md-6 col-md-offset-3 row">
+			<div class='alerts'>
+				@include('partials._flash')
+			</div>
+		</div>
 		<div class = "row">
 				<div class = 'col-md-8 col-md-offset-2'>
 					@yield('content')
@@ -63,6 +69,7 @@
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	<script src="/js/exercises.js"></script>
+	<script src="/js/alerts.js"></script>
+	@yield('script')
 </body>
 </html>

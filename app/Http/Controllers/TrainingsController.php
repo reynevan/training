@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 use Auth;
 
+use App\Training; 
+
+use Jenssegers\Date\Date;
+
+use \Session;
+Date::setLocale('pl');
+
 class TrainingsController extends Controller {
 
 
@@ -21,8 +28,22 @@ class TrainingsController extends Controller {
 	 */
 	public function index()
 	{
-		$trainings = Auth::user()->trainings()->unfinished()->get();
-		return view('trainings.index', compact('trainings'));
+		if (count(Auth::user()->exercises) == 0){
+			Session::flash('alert', 'Dodaj najpierw jakies ćwiczenia do "swoich ćwiczeń"');
+			return redirect('/exercises');
+		}
+		$trainingsFinished 	= Auth::user()->trainings()->finished()->orderBy('updated_at', 'desc')->paginate(5);
+		$trainingUnfinished = Auth::user()->trainings()->unfinished()->orderBy('created_at', 'desc')->first();
+		if (count($trainingUnfinished))
+			$trainingUnfinished->started = Date::parse($trainingUnfinished->created_at)->diffForHumans();
+		if (count($trainingsFinished)){
+			foreach ($trainingsFinished as $training)
+				$training->humanDate = Date::parse($training->updated_at)->diffForHumans();
+				if (strlen($training->humanDate) == 0)
+					$training->humanDate = 'xD';
+		}
+		$exercises = Auth::user()->exercises()->get();
+		return view('trainings.index', compact(['trainingsFinished', 'trainingUnfinished', 'exercises']));
 	}
 
 	/**
@@ -40,9 +61,16 @@ class TrainingsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$training = new Training();
+		$training->user_id = Auth::user()->id;
+		$training->save();
+
+		if ($request->input('ajax'))
+			return $training->id;
+		else
+			redirect('trainings');
 	}
 
 	/**
@@ -73,9 +101,19 @@ class TrainingsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, Request $request)
 	{
-		//
+		if ($request->input('touch')){
+			Auth::user()->trainings()->findOrFail($id)->touch();
+			return 'saved';
+		}
+		else {
+			$training = Auth::user()->trainings()->findOrFail($id);
+			if ($training->update(['finished' => true]))
+				return view('partials._finishedTraining', compact('training'));
+			else
+				return 'error';
+		}
 	}
 
 	/**
@@ -86,7 +124,10 @@ class TrainingsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		if (Auth::user()->trainings()->findOrFail($id)->delete())
+			return 'deleted';
+		else
+			return 'error';
 	}
 
 }

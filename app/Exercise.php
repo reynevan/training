@@ -12,5 +12,8 @@ class Exercise extends Model {
   public function serie(){
     return $this->belongsTo('App\Serie');
   }
+  public function scopeAcitive($query){
+    return $query->where('active', true);
+  }
 
 }

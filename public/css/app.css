@@ -2726,7 +2726,7 @@ select[multiple].form-group-lg .form-control {
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857143;
-  border-radius: 4px;
+  border-radius: 0;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -4626,10 +4626,9 @@ a.thumbnail.active {
   color: #333333;
 }
 .alert {
-  padding: 15px;
+  padding: 5px 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
-  border-radius: 4px;
 }
 .alert h4 {
   margin-top: 0;
@@ -6230,6 +6229,14 @@ body,
 label,
 .checkbox label {
   font-weight: 300;
+}
+.alerts {
+  min-height: 100px;
+  padding: 0;
+}
+.alerts {
+  left: auto;
+  right: auto;
 }
 
 /*# sourceMappingURL=app.css.map */

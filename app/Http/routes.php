@@ -13,13 +13,21 @@
 
 Route::get('/', 'TrainingsController@index');
 
-// Route::get('home', 'HomeController@index');
+Route::get('home', 'TrainingsController@index');
 
 Route::resource('trainings', 'TrainingsController');
 
 Route::resource('exercises', 'ExercisesController');
 
+Route::resource('users', 'UsersController');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::post('series', 'SeriesController@store');
+
+Route::put('series', 'SeriesController@update');
+
+Route::post('series_exercises', 'SeriesExercisesController@store');

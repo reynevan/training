@@ -12,7 +12,7 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.less(['exercises.less', 'app.less']);
-    mix.styles(['app.css', 'exercises.css'], null, 'public/css');
+    mix.less(['exercises.less', 'app.less', 'trainings.less']);
+    mix.styles(['app.css', 'exercises.css', 'trainings.css'], null, 'public/css');
     mix.coffee();
 });

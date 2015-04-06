@@ -4,7 +4,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Serie extends Model {
 
-	public function training(){
+  protected $fillable = ['training_id', 'serie_number'];
+
+  public function training(){
     return $this->belongsTo('App\Training');
   }
 
@@ -15,4 +17,11 @@ class Serie extends Model {
   public function exercise($id){
     return $this->exercises()->where('exercise_id', $id);
   }
+
+  public function delete(){
+    $this->exercises()->delete();
+
+    return parent::delete();
+  }
+  
 }

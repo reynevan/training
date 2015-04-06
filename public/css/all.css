@@ -2726,7 +2726,7 @@ select[multiple].form-group-lg .form-control {
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857143;
-  border-radius: 4px;
+  border-radius: 0;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -4626,10 +4626,9 @@ a.thumbnail.active {
   color: #333333;
 }
 .alert {
-  padding: 15px;
+  padding: 5px 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
-  border-radius: 4px;
 }
 .alert h4 {
   margin-top: 0;
@@ -6231,6 +6230,14 @@ label,
 .checkbox label {
   font-weight: 300;
 }
+.alerts {
+  min-height: 100px;
+  padding: 0;
+}
+.alerts {
+  left: auto;
+  right: auto;
+}
 
 /*# sourceMappingURL=app.css.map */
 .exercises .new-exercise input {
@@ -6239,4 +6246,52 @@ label,
 }
 
 /*# sourceMappingURL=exercises.css.map */
+.trainings input[type="number"] {
+  padding-left: 2px;
+}
+.trainings .training-finished {
+  margin: 30px 0;
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+.trainings .training-finished:hover {
+  background-color: #eee;
+  border: 1px solid #e8e8e8;
+}
+.trainings .btn-new-training {
+  width: 100%;
+}
+.trainings .btn-serie-remove {
+  padding: 0 4px;
+}
+.trainings .btn-serie-remove:hover {
+  text-decoration: none;
+}
+.trainings .new-training tbody tr td:first-of-type {
+  min-width: 100px;
+}
+.trainings .new-training tbody tr td:first-of-type button {
+  display: none;
+}
+.trainings .new-training tbody tr:hover td:first-of-type button {
+  display: inherit;
+}
+.trainings .new-training thead th:hover a {
+  display: inline-block;
+}
+.trainings .new-training thead th a {
+  display: none;
+}
+.trainings .training-finished:hover .btn-delete-training {
+  display: inline-block;
+}
+.trainings .btn-delete-training {
+  float: right;
+  display: none;
+}
+.trainings .btn-delete-training:hover {
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=trainings.css.map */
 /*# sourceMappingURL=all.css.map */
